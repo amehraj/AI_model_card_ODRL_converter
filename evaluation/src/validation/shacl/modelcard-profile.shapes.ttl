@@ -1,0 +1,139 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex:      <http://example.org/modelcard/terms#> .
+@prefix mcp:     <http://example.org/odrl/profile/modelcard/shapes#> .
+
+# SHACL shapes for the revised model-card ODRL profile (SNCS revision, W4/W5).
+# Structural / profile-conformance checks only — this validates that a generated policy has the
+# *shape* the revised profile requires, not that its content is correct (that is measured
+# separately by the extraction/constraint-accuracy metrics).
+#
+# The shapes see the RDF graph produced by JSON-LD expansion. Logical constraints are supported in
+# the form the prompt asks for (a node with "odrl:and" / "odrl:or" / "odrl:xor" and several member
+# nodes). The "and"/"or"/"xor" terms of the ODRL context, which expand to rdf:List, are not
+# supported and are reported as violations.
+
+mcp:PolicyShape
+  a sh:NodeShape ;
+  sh:targetClass odrl:Policy ;
+  sh:property [ sh:path odrl:profile ; sh:minCount 1 ] ;
+  sh:property [
+    sh:path odrl:target ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:node mcp:AssetShape ;
+  ] ;
+  sh:property [ sh:path odrl:permission ; sh:node mcp:PermissionShape ] ;
+  sh:property [ sh:path odrl:prohibition ; sh:node mcp:ProhibitionShape ] ;
+  sh:property [ sh:path odrl:duty ; sh:node mcp:DutyShape ] .
+
+# The target asset carries the model details and the descriptive properties. Descriptive
+# properties must be flat literals (never nested objects) and are never rules.
+mcp:AssetShape
+  a sh:NodeShape ;
+  sh:property [ sh:path dc:title ; sh:minCount 1 ] ;
+  sh:property [ sh:path ex:hardware ;               sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:software ;               sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:evaluationMetrics ;      sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:evaluationPerformance ;  sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:evaluationDatasets ;     sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:evaluationFactors ;      sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:trainingAlgorithm ;      sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:trainingDataset ;        sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:trainingProcedure ;      sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:limitations ;            sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:typeOfBias ;             sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:privacyConcerns ;        sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:riskFactors ;            sh:nodeKind sh:Literal ] ;
+  sh:property [ sh:path ex:riskSeverity ;           sh:nodeKind sh:Literal ] .
+
+# Every rule has the profile's action, at least one constraint, and is not wrapped inside another
+# rule property (e.g. a permission that itself contains "odrl:permission").
+mcp:PermissionShape
+  a sh:NodeShape ;
+  sh:property [ sh:path odrl:action ; sh:minCount 1 ; sh:in ( odrl:use ) ] ;
+  sh:property [ sh:path odrl:constraint ; sh:minCount 1 ] ;
+  sh:property [ sh:path odrl:permission ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:prohibition ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:duty ; sh:maxCount 0 ] .
+
+mcp:ProhibitionShape
+  a sh:NodeShape ;
+  sh:property [ sh:path odrl:action ; sh:minCount 1 ; sh:in ( odrl:use ) ] ;
+  sh:property [ sh:path odrl:constraint ; sh:minCount 1 ] ;
+  sh:property [ sh:path odrl:permission ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:prohibition ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:duty ; sh:maxCount 0 ] .
+
+# Duties are restricted to the genuine-obligation vocabulary decided in W4. Any duty whose
+# constraint leftOperand falls outside this list is a profile violation (a descriptive field
+# that should have been modelled as an asset property instead). The path below recurses through
+# any depth of odrl:and/odrl:or/odrl:xor nesting via a zero-or-more alternative path, so a
+# violation buried inside nested constraints is still caught, not just top-level ones.
+mcp:DutyShape
+  a sh:NodeShape ;
+  sh:property [ sh:path odrl:action ; sh:minCount 1 ; sh:in ( odrl:inform ) ] ;
+  sh:property [ sh:path odrl:constraint ; sh:minCount 1 ] ;
+  sh:property [ sh:path odrl:permission ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:prohibition ; sh:maxCount 0 ] ;
+  sh:property [ sh:path odrl:duty ; sh:maxCount 0 ] ;
+  sh:property [
+    sh:path ( odrl:constraint [ sh:zeroOrMorePath [ sh:alternativePath ( odrl:and odrl:or odrl:xor ) ] ] odrl:leftOperand ) ;
+    sh:in (
+      ex:biasMitigation
+      ex:riskMitigation
+      ex:safetyMeasures
+      ex:securityMeasures
+      ex:safetyAndSecurityPolicy
+      ex:privacyPolicy
+      ex:regulatoryAdherence
+      ex:regulatoryCompliance
+      ex:caveatsAndRecommendations
+    ) ;
+  ] .
+
+# Every constraint node (directly under a rule or nested under and/or/xor) is either an atomic
+# constraint or a logical constraint, and nothing else. This rejects descriptive fields written as
+# bare "ex:" keys inside a constraint, objects used as operands, and invalid operators.
+mcp:ConstraintShape
+  a sh:NodeShape ;
+  sh:targetObjectsOf odrl:constraint , odrl:and , odrl:or , odrl:xor ;
+  sh:or ( mcp:AtomicConstraintShape mcp:LogicalConstraintShape ) .
+
+mcp:AtomicConstraintShape
+  a sh:NodeShape ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
+  sh:property [
+    sh:path odrl:leftOperand ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^http://example\\.org/modelcard/terms#[A-Za-z]+$" ;
+  ] ;
+  sh:property [
+    sh:path odrl:operator ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:in ( odrl:eq odrl:neq odrl:gt odrl:gteq odrl:lt odrl:lteq
+            odrl:hasPart odrl:isA odrl:isAllOf odrl:isAnyOf odrl:isNoneOf odrl:isPartOf ) ;
+  ] ;
+  sh:property [
+    sh:path odrl:rightOperand ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+  ] .
+
+mcp:LogicalConstraintShape
+  a sh:NodeShape ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type odrl:and odrl:or odrl:xor ) ;
+  sh:or (
+    [ sh:property [ sh:path odrl:and ; sh:minCount 1 ] ]
+    [ sh:property [ sh:path odrl:or  ; sh:minCount 1 ] ]
+    [ sh:property [ sh:path odrl:xor ; sh:minCount 1 ] ]
+  ) .

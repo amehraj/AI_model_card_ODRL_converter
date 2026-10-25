@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables (hosted endpoint URL and key)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript build info and output
+*.tsbuildinfo
+dist
+
+# OS files
+.DS_Store

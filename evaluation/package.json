@@ -1,0 +1,27 @@
+{
+  "name": "model-card-odrl-evaluation",
+  "version": "1.0.0",
+  "description": "RQ4 evaluation harness: converter vs. baselines, SHACL profile conformance, and extraction metrics (SNCS revision W5)",
+  "type": "module",
+  "scripts": {
+    "harness": "tsx src/runHarness.ts",
+    "aggregate": "tsx src/aggregateResults.ts",
+    "test:shapes": "tsx src/testShapes.ts",
+    "test:metrics": "tsx src/testMetrics.ts",
+    "test:corpus": "tsx src/testCorpus.ts",
+    "rescore": "tsx src/rescore.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "jsonld": "^8.3.2",
+    "n3": "^1.17.2",
+    "openai": "^4.90.0",
+    "rdf-validate-shacl": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/jsonld": "^1.5.15",
+    "@types/node": "^20.11.24",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

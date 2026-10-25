@@ -1,0 +1,123 @@
+{
+  "id": "hf-z-image-turbo",
+  "repository": "Hugging Face",
+  "source": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo (workbook ID 116, retrieved 2026-10-06; raw/hf_Tongyi-MAI_Z-Image-Turbo.md)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Tongyi-MAI",
+      "type": "Text-to-image generation model",
+      "architecture": "6B parameters, Scalable Single-Stream Diffusion Transformer (S3-DiT)",
+      "description": "Z-Image-Turbo is a distilled version of the Z-Image family that generates images in 8 function evaluations, with sub-second latency on H800 GPUs and a fit within 16G VRAM consumer devices.",
+      "license": "Apache-2.0",
+      "version": ""
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Photorealistic image generation; bilingual (English and Chinese) text rendering in images; generation that follows detailed instructions",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "hardware": "Sub-second inference on enterprise-grade H800 GPUs; fits within 16G VRAM consumer devices",
+      "software": "Hugging Face diffusers, installed from source for Z-Image support"
+    },
+    "evaluation": {
+      "metrics": "Elo-based human preference evaluation",
+      "datasets": "Alibaba AI Arena text-to-image leaderboard",
+      "performance": "Highly competitive against other leading models and state of the art among open-source models",
+      "factors": ""
+    },
+    "trainingData": {
+      "algorithm": "Decoupled-DMD few-step distillation (CFG augmentation and distribution matching) fused with reinforcement learning (DMDR)",
+      "procedure": "Pre-training, supervised fine-tuning and reinforcement learning, distilled to 8 steps",
+      "dataset": ""
+    },
+    "ethicalConsiderations": {
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": "",
+      "limitations": ""
+    },
+    "caveatsAndRecommendations": ""
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/hf-z-image-turbo",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/hf-z-image-turbo",
+      "@type": "odrl:Asset",
+      "dc:title": "Z-Image-Turbo",
+      "dc:creator": {
+        "@id": "http://example.org/party/tongyi-mai"
+      },
+      "dc:type": "Text-to-image generation model",
+      "dcterms:license": "Apache-2.0",
+      "ex:hardware": "Sub-second inference on enterprise-grade H800 GPUs; fits within 16G VRAM consumer devices",
+      "ex:software": "Hugging Face diffusers, installed from source for Z-Image support",
+      "ex:evaluationMetrics": "Elo-based human preference evaluation",
+      "ex:evaluationDatasets": "Alibaba AI Arena text-to-image leaderboard",
+      "ex:evaluationPerformance": "Highly competitive against other leading models and state of the art among open-source models",
+      "ex:trainingAlgorithm": "Decoupled-DMD few-step distillation (CFG augmentation and distribution matching) fused with reinforcement learning (DMDR)",
+      "ex:trainingProcedure": "Pre-training, supervised fine-tuning and reinforcement learning, distilled to 8 steps"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/tongyi-mai",
+        "foaf:name": "Tongyi-MAI",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Photorealistic image generation"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Bilingual (English and Chinese) text rendering in images"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Generation that follows detailed instructions"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

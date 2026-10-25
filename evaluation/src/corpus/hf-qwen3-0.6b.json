@@ -1,0 +1,170 @@
+{
+  "id": "hf-qwen3-0.6b",
+  "repository": "Hugging Face",
+  "source": "https://huggingface.co/Qwen/Qwen3-0.6B (workbook ID 94, retrieved 2026-10-06 from README.md; raw/hf_Qwen_Qwen3-0.6B.md)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Qwen",
+      "type": "Causal language model",
+      "architecture": "28 layers, 16 query and 8 key/value attention heads (GQA), 0.6B parameters (0.44B non-embedding), context length 32,768",
+      "description": "Qwen3-0.6B is the smallest dense model of the Qwen3 series, with switchable thinking and non-thinking modes, improved reasoning, instruction following, agent capabilities and support for 100+ languages.",
+      "license": "Apache-2.0",
+      "version": ""
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Reasoning in mathematics, code generation and commonsense logic; instruction following; creative writing, role-playing and multi-turn dialogue; agent tasks with external tool calling; multilingual instruction following and translation in 100+ languages",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "software": "Needs Hugging Face transformers 4.51.0 or later; can be deployed with sglang 0.4.6.post1 or later or vllm 0.8.5 or later; also supported by Ollama, LMStudio, MLX-LM, llama.cpp and KTransformers",
+      "hardware": ""
+    },
+    "trainingData": {
+      "procedure": "Pretraining and post-training",
+      "algorithm": "",
+      "dataset": ""
+    },
+    "caveatsAndRecommendations": "Do not use greedy decoding in thinking mode: use Temperature 0.6, TopP 0.95, TopK 20, MinP 0; in non-thinking mode use Temperature 0.7, TopP 0.8, TopK 20, MinP 0; adjust presence_penalty between 0 and 2 to reduce endless repetitions, noting that a higher value may cause language mixing; use an output length of 32,768 tokens (38,912 for complex math and programming problems); keep thinking content out of the history in multi-turn conversations; standardize the output format with the prompt when benchmarking",
+    "evaluation": {
+      "metrics": "",
+      "factors": "",
+      "datasets": "",
+      "performance": ""
+    },
+    "ethicalConsiderations": {
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": "",
+      "limitations": ""
+    }
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/hf-qwen3-0.6b",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/hf-qwen3-0.6b",
+      "@type": "odrl:Asset",
+      "dc:title": "Qwen3-0.6B",
+      "dc:creator": {
+        "@id": "http://example.org/party/qwen"
+      },
+      "dc:type": "Causal language model",
+      "dcterms:license": "Apache-2.0",
+      "ex:software": "Needs Hugging Face transformers 4.51.0 or later; can be deployed with sglang 0.4.6.post1 or later or vllm 0.8.5 or later; also supported by Ollama, LMStudio, MLX-LM, llama.cpp and KTransformers",
+      "ex:trainingProcedure": "Pretraining and post-training"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/qwen",
+        "foaf:name": "Qwen",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Reasoning in mathematics, code generation and commonsense logic"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Instruction following"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Creative writing, role-playing and multi-turn dialogue"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Agent tasks with external tool calling"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Multilingual instruction following and translation in 100+ languages"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Do not use greedy decoding in thinking mode: use Temperature 0.6, TopP 0.95, TopK 20, MinP 0"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "In non-thinking mode use Temperature 0.7, TopP 0.8, TopK 20, MinP 0"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Adjust presence_penalty between 0 and 2 to reduce endless repetitions; a higher value may cause language mixing"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Use an output length of 32,768 tokens, or 38,912 for complex math and programming problems"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Keep thinking content out of the history in multi-turn conversations"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Standardize the output format with the prompt when benchmarking"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

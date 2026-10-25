@@ -1,0 +1,161 @@
+{
+  "id": "kaggle-perch",
+  "repository": "Kaggle",
+  "source": "https://www.kaggle.com/models/google/bird-vocalization-classifier (workbook ID 145, read in Chrome 2026-10-06; card now describes Perch 2.0; no raw file saved)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Google",
+      "version": "Perch 2.0 (perch_v2)",
+      "type": "Bioacoustics audio classification and embedding model",
+      "architecture": "EfficientNet-B3 embedding model with about 12 million parameters plus a species classification head of 91 million parameters; 1536-dimensional embeddings",
+      "description": "Perch is a bioacoustics model trained to classify nearly 15,000 species and to generate audio embeddings for downstream applications.",
+      "license": "Apache-2.0"
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Classifying nearly 15,000 species from audio, mostly birds but also frogs, crickets, grasshoppers and mammals; generating audio embeddings for downstream applications such as individual identification and estimating coral reef health; detecting critically endangered birds; powering audio search engines",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "hardware": "The perch_v2 variant requires a GPU; the perch_v2_cpu variant runs on a CPU",
+      "software": "TensorFlow 2.20 or later"
+    },
+    "evaluation": {
+      "datasets": "Tasks include species classification in avian soundscapes, call type and dialect recognition, individual identification of dogs and bats, and event detection in coral reefs; benchmarks BirdSet and BEANS",
+      "performance": "State-of-the-art scores on bioacoustics benchmarks such as BirdSet and BEANS",
+      "metrics": "",
+      "factors": ""
+    },
+    "trainingData": {
+      "dataset": "Publicly available audio from Xeno-Canto, iNaturalist, Animal Sound Archive and FSD50k",
+      "procedure": "Trained with a softmax head; the softmax is not applied at inference time",
+      "algorithm": ""
+    },
+    "ethicalConsiderations": {
+      "limitations": "Output logits for species are uncalibrated and possibly unreliable for rare species",
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": ""
+    },
+    "caveatsAndRecommendations": "Tune detection thresholds on your own data; for most cases train a simple linear classifier on top of the embeddings; use an agile modelling workflow with a human annotator in the loop for most bioacoustics applications; the model consumes 5-second audio segments sampled at 32 kHz, so resample audio with other sample rates"
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/kaggle-perch",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/kaggle-perch",
+      "@type": "odrl:Asset",
+      "dc:title": "Perch",
+      "dc:creator": {
+        "@id": "http://example.org/party/google"
+      },
+      "dcterms:hasVersion": "Perch 2.0 (perch_v2)",
+      "dc:type": "Bioacoustics audio classification and embedding model",
+      "dcterms:license": "Apache-2.0",
+      "ex:hardware": "The perch_v2 variant requires a GPU; the perch_v2_cpu variant runs on a CPU",
+      "ex:software": "TensorFlow 2.20 or later",
+      "ex:evaluationPerformance": "State-of-the-art scores on bioacoustics benchmarks such as BirdSet and BEANS",
+      "ex:evaluationDatasets": "Tasks include species classification in avian soundscapes, call type and dialect recognition, individual identification of dogs and bats, and event detection in coral reefs; benchmarks BirdSet and BEANS",
+      "ex:trainingDataset": "Publicly available audio from Xeno-Canto, iNaturalist, Animal Sound Archive and FSD50k",
+      "ex:trainingProcedure": "Trained with a softmax head; the softmax is not applied at inference time",
+      "ex:limitations": "Output logits for species are uncalibrated and possibly unreliable for rare species"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/google",
+        "foaf:name": "Google",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Classifying nearly 15,000 species from audio, mostly birds but also frogs, crickets, grasshoppers and mammals"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Generating audio embeddings for downstream applications such as individual identification and estimating coral reef health"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Detecting critically endangered birds"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Powering audio search engines"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Tune detection thresholds on your own data"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "For most cases train a simple linear classifier on top of the embeddings"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Use an agile modelling workflow with a human annotator in the loop for most bioacoustics applications"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "The model consumes 5-second audio segments sampled at 32 kHz, so resample audio with other sample rates"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

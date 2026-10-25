@@ -1,0 +1,19 @@
+[
+  {
+    "name": "qwen2.5-7b",
+    "baseURL": "http://localhost:11434/v1",
+    "model": "qwen2.5:7b-instruct"
+  },
+  {
+    "name": "qwen3.8-27b-aic",
+    "baseURLEnv": "LLM_BASE_URL",
+    "model": "Qwen3.8-27B-AIC",
+    "apiKeyEnv": "LLM_API_KEY"
+  },
+  {
+    "name": "phi4-14b",
+    "baseURLEnv": "LLM_BASE_URL",
+    "model": "phi4-14b",
+    "apiKeyEnv": "LLM_API_KEY"
+  }
+]

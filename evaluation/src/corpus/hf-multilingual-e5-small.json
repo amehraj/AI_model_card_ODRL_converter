@@ -1,0 +1,155 @@
+{
+  "id": "hf-multilingual-e5-small",
+  "repository": "Hugging Face",
+  "source": "https://huggingface.co/intfloat/multilingual-e5-small (workbook ID 103, retrieved 2026-10-06; raw/hf_intfloat_multilingual-e5-small.md, YAML metadata removed)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "intfloat",
+      "type": "Multilingual text embedding model",
+      "architecture": "12 layers, embedding size 384, initialized from microsoft/Multilingual-MiniLM-L12-H384",
+      "description": "Multilingual-E5-small encodes queries and passages as text embeddings for retrieval and similarity tasks in 100 languages.",
+      "license": "MIT",
+      "version": ""
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Passage retrieval in open question answering and ad-hoc information retrieval; semantic similarity; bitext mining and paraphrase retrieval; embeddings as features for linear probing classification and clustering",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "evaluation": {
+      "metrics": "MRR@10",
+      "datasets": "Mr. TyDi; BEIR and MTEB benchmarks",
+      "performance": "Average MRR@10 of 64.4 on Mr. TyDi, against 33.3 for BM25, 16.7 for mDPR and 70.5 for multilingual-e5-large",
+      "factors": ""
+    },
+    "trainingData": {
+      "algorithm": "Contrastive pre-training with weak supervision followed by supervised fine-tuning, InfoNCE loss with temperature 0.01",
+      "dataset": "First stage: filtered mC4, CC News, NLLB, Wikipedia, filtered Reddit, S2ORC, Stackexchange, xP3 and miscellaneous unsupervised SBERT data; second stage: MS MARCO, NQ, Trivia QA, NLI from SimCSE, ELI5, DuReader Retrieval, KILT Fever, KILT HotpotQA, SQuAD, Quora, Mr. TyDi and MIRACL (training sets only)",
+      "procedure": "Initialization from microsoft/Multilingual-MiniLM-L12-H384, then two stages: contrastive pre-training with weak supervision and supervised fine-tuning"
+    },
+    "ethicalConsiderations": {
+      "limitations": "Long texts are truncated to at most 512 tokens; low-resource languages may see performance degradation",
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": ""
+    },
+    "caveatsAndRecommendations": "Add the prefixes \"query: \" and \"passage: \" to input texts as in training, otherwise performance degrades: use both for asymmetric tasks such as passage retrieval and \"query: \" only for symmetric tasks and for features; compare relative order of cosine similarity scores rather than absolute values, which fall between 0.7 and 1.0",
+    "factors": {
+      "hardware": "",
+      "software": ""
+    }
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/hf-multilingual-e5-small",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/hf-multilingual-e5-small",
+      "@type": "odrl:Asset",
+      "dc:title": "Multilingual-E5-small",
+      "dc:creator": {
+        "@id": "http://example.org/party/intfloat"
+      },
+      "dc:type": "Multilingual text embedding model",
+      "dcterms:license": "MIT",
+      "ex:evaluationMetrics": "MRR@10",
+      "ex:evaluationDatasets": "Mr. TyDi; BEIR and MTEB benchmarks",
+      "ex:evaluationPerformance": "Average MRR@10 of 64.4 on Mr. TyDi, against 33.3 for BM25, 16.7 for mDPR and 70.5 for multilingual-e5-large",
+      "ex:trainingAlgorithm": "Contrastive pre-training with weak supervision followed by supervised fine-tuning, InfoNCE loss with temperature 0.01",
+      "ex:trainingDataset": "First stage: filtered mC4, CC News, NLLB, Wikipedia, filtered Reddit, S2ORC, Stackexchange, xP3 and miscellaneous unsupervised SBERT data; second stage: MS MARCO, NQ, Trivia QA, NLI from SimCSE, ELI5, DuReader Retrieval, KILT Fever, KILT HotpotQA, SQuAD, Quora, Mr. TyDi and MIRACL (training sets only)",
+      "ex:trainingProcedure": "Initialization from microsoft/Multilingual-MiniLM-L12-H384, then two stages: contrastive pre-training with weak supervision and supervised fine-tuning",
+      "ex:limitations": "Long texts are truncated to at most 512 tokens; low-resource languages may see performance degradation"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/intfloat",
+        "foaf:name": "intfloat",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Passage retrieval in open question answering and ad-hoc information retrieval"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Semantic similarity"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Bitext mining and paraphrase retrieval"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Embeddings as features for linear probing classification and clustering"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Add the prefixes \"query: \" and \"passage: \" to input texts as in training, otherwise performance degrades"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Use both prefixes for asymmetric tasks such as passage retrieval and the \"query: \" prefix only for symmetric tasks and for features"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Compare the relative order of cosine similarity scores rather than absolute values, which fall between 0.7 and 1.0"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

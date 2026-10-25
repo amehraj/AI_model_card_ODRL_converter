@@ -1,0 +1,169 @@
+{
+  "id": "hf-deepseek-v4-pro",
+  "repository": "Hugging Face",
+  "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro (workbook ID 115, retrieved 2026-10-16; raw/hf_deepseek-ai_DeepSeek-V4-Pro.md). Replaces hf-gemma-4-26b-a4b-it, for which the hosted model returned HTTP 400.",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "DeepSeek-AI",
+      "type": "Mixture-of-Experts language model",
+      "architecture": "1.6T total and 49B activated parameters, one-million-token context length, hybrid attention (Compressed Sparse Attention and Heavily Compressed Attention), Manifold-Constrained Hyper-Connections, FP4 and FP8 mixed precision",
+      "description": "DeepSeek-V4-Pro is a preview of the DeepSeek-V4 series of Mixture-of-Experts language models, designed for efficient long-context use with three reasoning effort modes.",
+      "license": "MIT",
+      "version": "DeepSeek-V4-Pro (preview)"
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Knowledge and reasoning tasks; Coding; Long-context tasks of up to one million tokens; Agentic tasks; Non-think mode for routine daily tasks and low-risk decisions; Think high mode for complex problem solving and planning; Think max mode for exploring the boundary of reasoning capability",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "hardware": "",
+      "software": "Encoding scripts in the encoding folder for OpenAI-compatible messages; inference instructions in the inference folder"
+    },
+    "evaluation": {
+      "datasets": "",
+      "performance": "DeepSeek-V4-Pro-Base: MMLU 90.1, MMLU-Pro 73.5, HumanEval 76.8, GSM8K 92.6, LongBench-V2 51.5; DeepSeek-V4-Pro-Max: MMLU-Pro 87.5, GPQA Diamond 90.1, LiveCodeBench 93.5, Codeforces rating 3206, SWE Verified 80.6",
+      "metrics": "Benchmarks on world knowledge, language and reasoning, code and math, long context and agentic tasks, for the base model and for the instruct model in three reasoning modes",
+      "factors": ""
+    },
+    "trainingData": {
+      "dataset": "More than 32T diverse and high-quality tokens",
+      "algorithm": "Muon optimizer; post-training with domain-specific experts trained by SFT and RL with GRPO, then consolidated by on-policy distillation",
+      "procedure": "Pre-training followed by a two-stage post-training pipeline"
+    },
+    "caveatsAndRecommendations": "For local deployment, set the sampling parameters to temperature 1.0 and top_p 1.0; For the think max mode, set the context window to at least 384K tokens; The release has no Jinja chat template, so messages are encoded with the provided encoding scripts",
+    "ethicalConsiderations": {
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": "",
+      "limitations": ""
+    }
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/hf-deepseek-v4-pro",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/hf-deepseek-v4-pro",
+      "@type": "odrl:Asset",
+      "dc:title": "DeepSeek-V4-Pro",
+      "dc:creator": {
+        "@id": "http://example.org/party/deepseek-ai"
+      },
+      "dc:type": "Mixture-of-Experts language model",
+      "dcterms:license": "MIT",
+      "ex:software": "Encoding scripts in the encoding folder for OpenAI-compatible messages; inference instructions in the inference folder",
+      "ex:evaluationMetrics": "Benchmarks on world knowledge, language and reasoning, code and math, long context and agentic tasks, for the base model and for the instruct model in three reasoning modes",
+      "ex:evaluationPerformance": "DeepSeek-V4-Pro-Base: MMLU 90.1, MMLU-Pro 73.5, HumanEval 76.8, GSM8K 92.6, LongBench-V2 51.5; DeepSeek-V4-Pro-Max: MMLU-Pro 87.5, GPQA Diamond 90.1, LiveCodeBench 93.5, Codeforces rating 3206, SWE Verified 80.6",
+      "ex:trainingDataset": "More than 32T diverse and high-quality tokens",
+      "ex:trainingAlgorithm": "Muon optimizer; post-training with domain-specific experts trained by SFT and RL with GRPO, then consolidated by on-policy distillation",
+      "ex:trainingProcedure": "Pre-training followed by a two-stage post-training pipeline"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/deepseek-ai",
+        "foaf:name": "DeepSeek-AI",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Knowledge and reasoning tasks"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Coding"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Long-context tasks of up to one million tokens"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Agentic tasks"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Non-think mode for routine daily tasks and low-risk decisions"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Think high mode for complex problem solving and planning"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Think max mode for exploring the boundary of reasoning capability"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "For local deployment, set the sampling parameters to temperature 1.0 and top_p 1.0"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "For the think max mode, set the context window to at least 384K tokens"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "The release has no Jinja chat template, so messages are encoded with the provided encoding scripts"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

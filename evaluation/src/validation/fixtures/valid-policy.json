@@ -1,0 +1,81 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/odrl.jsonld",
+    {
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "dcterms": "http://purl.org/dc/terms/",
+      "foaf": "http://xmlns.com/foaf/0.1/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "ex": "http://example.org/modelcard/terms#"
+    }
+  ],
+  "@type": "odrl:Policy",
+  "uid": "http://example.org/policy/emotionnet-1",
+  "profile": "http://example.org/odrl/profile/modelcard",
+  "target": {
+    "@id": "http://example.org/asset/emotionnet",
+    "@type": "odrl:Asset",
+    "dc:title": "EmotionNet",
+    "dc:creator": { "@id": "http://example.org/party/nvidia" },
+    "dc:type": "Emotion classification network",
+    "ex:hardware": "Jetson Nano (1190 FPS), Jetson NX (4016 FPS), Xavier (5988 FPS), T4 (19,644 FPS), all FP16",
+    "ex:software": "NVIDIA TAO Toolkit; deployable via DeepStream or TensorRT",
+    "ex:evaluationMetrics": "Precision, recall, f-score",
+    "ex:evaluationPerformance": "Weighted average precision 0.90191, recall 0.902, f-score 0.9007",
+    "ex:evaluationDatasets": "71,020 held-out MultiPie images",
+    "ex:trainingDataset": "MultiPie dataset: 750K+ images, 337 subjects, 15 viewpoints, 19 illumination conditions",
+    "ex:typeOfBias": "Trained on posed rather than spontaneous emotion; no race, gender or skin type attributes inferred",
+    "ex:privacyConcerns": "Facial landmark input is biometric in nature",
+    "ex:riskFactors": "Misclassification on occluded faces or unstable landmarks; cannot detect spontaneous emotion"
+  },
+  "party": [
+    { "@id": "http://example.org/party/nvidia", "foaf:name": "NVIDIA", "odrl:role": "odrl:assigner" },
+    { "@id": "http://example.org/party/video-analytics-developers", "foaf:name": "Video analytics developers", "odrl:role": "odrl:assignee" }
+  ],
+  "permission": [
+    {
+      "@type": "odrl:Permission",
+      "action": "odrl:use",
+      "constraint": [
+        { "leftOperand": "ex:intendedUseCase", "operator": "odrl:eq", "rightOperand": "Detect human emotion from photos and videos using 68 facial landmark points" }
+      ]
+    }
+  ],
+  "prohibition": [
+    {
+      "@type": "odrl:Prohibition",
+      "action": "odrl:use",
+      "constraint": [
+        {
+          "odrl:or": [
+            { "leftOperand": "ex:misuseCase", "operator": "odrl:eq", "rightOperand": "Covert surveillance" },
+            { "leftOperand": "ex:misuseCase", "operator": "odrl:eq", "rightOperand": "Emotion-based profiling" }
+          ]
+        }
+      ]
+    }
+  ],
+  "duty": [
+    {
+      "@type": "odrl:Duty",
+      "action": "odrl:inform",
+      "constraint": [
+        { "leftOperand": "ex:biasMitigation", "operator": "odrl:eq", "rightOperand": "Developers are advised to consider algorithmic bias when choosing or deploying the model" }
+      ]
+    },
+    {
+      "@type": "odrl:Duty",
+      "action": "odrl:inform",
+      "constraint": [
+        { "leftOperand": "ex:securityMeasures", "operator": "odrl:eq", "rightOperand": "Deployment is hardware-bound; model load requires a key" }
+      ]
+    },
+    {
+      "@type": "odrl:Duty",
+      "action": "odrl:inform",
+      "constraint": [
+        { "leftOperand": "ex:caveatsAndRecommendations", "operator": "odrl:eq", "rightOperand": "Usage restricted to the described emotion-recognition use case" }
+      ]
+    }
+  ]
+}

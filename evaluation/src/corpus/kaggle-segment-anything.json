@@ -1,0 +1,120 @@
+{
+  "id": "kaggle-segment-anything",
+  "repository": "Kaggle",
+  "source": "https://www.kaggle.com/models/metaresearch/segment-anything (workbook ID 143, read in Chrome 2026-10-06; no raw file saved)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Meta AI Research, FAIR",
+      "version": "vit-b",
+      "type": "Promptable image segmentation model",
+      "architecture": "ViT-B variation with 91M parameters",
+      "description": "The Segment Anything Model (SAM) produces high quality object masks from input prompts such as points or boxes, and has strong zero-shot performance on a variety of segmentation tasks.",
+      "license": "Apache-2.0"
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Producing object masks from input prompts such as points or boxes; generating masks for all objects in an image; zero-shot segmentation of unfamiliar objects and images without additional training",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "software": "Install the segment-anything package from the facebookresearch/segment-anything GitHub repository",
+      "hardware": ""
+    },
+    "evaluation": {
+      "performance": "Strong zero-shot performance on a variety of segmentation tasks",
+      "metrics": "",
+      "factors": "",
+      "datasets": ""
+    },
+    "trainingData": {
+      "dataset": "11 million images and 1.1 billion masks (SA-1B)",
+      "algorithm": "",
+      "procedure": ""
+    },
+    "ethicalConsiderations": {
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": "",
+      "limitations": ""
+    },
+    "caveatsAndRecommendations": ""
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/kaggle-segment-anything",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/kaggle-segment-anything",
+      "@type": "odrl:Asset",
+      "dc:title": "Segment Anything",
+      "dc:creator": {
+        "@id": "http://example.org/party/meta-ai-research-fair"
+      },
+      "dcterms:hasVersion": "vit-b",
+      "dc:type": "Promptable image segmentation model",
+      "dcterms:license": "Apache-2.0",
+      "ex:software": "Install the segment-anything package from the facebookresearch/segment-anything GitHub repository",
+      "ex:evaluationPerformance": "Strong zero-shot performance on a variety of segmentation tasks",
+      "ex:trainingDataset": "11 million images and 1.1 billion masks (SA-1B)"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/meta-ai-research-fair",
+        "foaf:name": "Meta AI Research, FAIR",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Producing object masks from input prompts such as points or boxes"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Generating masks for all objects in an image"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Zero-shot segmentation of unfamiliar objects and images without additional training"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "model-card-odrl-converter-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Prompt and model call of the converter",
+  "dependencies": {
+    "openai": "^4.90.0"
+  }
+}

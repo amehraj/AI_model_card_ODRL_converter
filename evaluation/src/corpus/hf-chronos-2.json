@@ -1,0 +1,148 @@
+{
+  "id": "hf-chronos-2",
+  "repository": "Hugging Face",
+  "source": "https://huggingface.co/amazon/chronos-2 (workbook ID 97, retrieved 2026-10-06; raw/hf_amazon_chronos-2.md)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Amazon",
+      "type": "Time series foundation model (encoder-only, zero-shot forecasting)",
+      "architecture": "120M parameters, encoder-only, inspired by the T5 encoder, with group attention",
+      "description": "Chronos-2 supports univariate, multivariate and covariate-informed forecasting in a single architecture and produces multi-step-ahead quantile forecasts.",
+      "license": "Apache-2.0",
+      "version": ""
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Zero-shot forecasting of univariate time series; multivariate forecasting; forecasting informed by past-only and known-future covariates; cross-learning across related series",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "hardware": "GPU and CPU inference; over 300 time series forecasts per second on a single A10G GPU",
+      "software": "Python package chronos-forecasting 2.0 or later; deployment on Amazon SageMaker with AutoGluon-Cloud (recommended) or SageMaker JumpStart"
+    },
+    "evaluation": {
+      "datasets": "fev-bench, GIFT-Eval, Chronos Benchmark II",
+      "performance": "State-of-the-art zero-shot accuracy among public models on fev-bench, GIFT-Eval and Chronos Benchmark II",
+      "metrics": "",
+      "factors": ""
+    },
+    "trainingData": {
+      "dataset": "Subset of the Chronos Datasets (excluding the test portion of datasets that overlap with GIFT-Eval); subset of GIFT-Eval Pretrain; synthetic univariate and multivariate data",
+      "algorithm": "",
+      "procedure": ""
+    },
+    "caveatsAndRecommendations": "For production use, deploy Chronos-2 on Amazon SageMaker, preferably with AutoGluon-Cloud; maximum context length is 8192 and maximum prediction length is 1024",
+    "ethicalConsiderations": {
+      "typeOfBias": "",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "safetyMeasures": "",
+      "securityMeasures": "",
+      "safetyAndSecurityPolicy": "",
+      "riskFactors": "",
+      "riskSeverity": "",
+      "riskMitigation": "",
+      "unintendedUsers": "",
+      "prohibitedDomains": "",
+      "misuseCases": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": "",
+      "limitations": ""
+    }
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/hf-chronos-2",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/hf-chronos-2",
+      "@type": "odrl:Asset",
+      "dc:title": "Chronos-2",
+      "dc:creator": {
+        "@id": "http://example.org/party/amazon"
+      },
+      "dc:type": "Time series foundation model (encoder-only, zero-shot forecasting)",
+      "dcterms:license": "Apache-2.0",
+      "ex:hardware": "GPU and CPU inference; over 300 time series forecasts per second on a single A10G GPU",
+      "ex:software": "Python package chronos-forecasting 2.0 or later; deployment on Amazon SageMaker with AutoGluon-Cloud (recommended) or SageMaker JumpStart",
+      "ex:evaluationDatasets": "fev-bench, GIFT-Eval, Chronos Benchmark II",
+      "ex:evaluationPerformance": "State-of-the-art zero-shot accuracy among public models on fev-bench, GIFT-Eval and Chronos Benchmark II",
+      "ex:trainingDataset": "Subset of the Chronos Datasets (excluding the test portion of datasets that overlap with GIFT-Eval); subset of GIFT-Eval Pretrain; synthetic univariate and multivariate data"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/amazon",
+        "foaf:name": "Amazon",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Zero-shot forecasting of univariate time series"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Multivariate forecasting"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Forecasting informed by past-only and known-future covariates"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Cross-learning across related series"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "For production use, deploy Chronos-2 on Amazon SageMaker, preferably with AutoGluon-Cloud"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Maximum context length is 8192 and maximum prediction length is 1024"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

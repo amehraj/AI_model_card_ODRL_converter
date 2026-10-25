@@ -1,0 +1,272 @@
+{
+  "id": "kaggle-llama-3.2",
+  "repository": "Kaggle",
+  "source": "https://www.kaggle.com/models/metaresearch/llama-3.2 (workbook ID 139, read in Chrome 2026-10-06; Model Card tab text, no raw file saved)",
+  "modelCardContent": {
+    "modelDetails": {
+      "provider": "Meta",
+      "version": "Llama 3.2 1B and 3B, pretrained and instruction-tuned (text only)",
+      "type": "Multilingual large language model (text in, text out)",
+      "architecture": "Auto-regressive optimized transformer with grouped-query attention, 1.23B and 3.21B parameters, 128k context, shared embeddings; tuned versions use supervised fine-tuning and reinforcement learning with human feedback",
+      "description": "Instruction-tuned text-only models optimized for multilingual dialogue, including agentic retrieval and summarization tasks.",
+      "license": "Llama 3.2 Community License"
+    },
+    "intendedUse": {
+      "primaryIntendedUseCases": "Commercial and research use in multiple languages; assistant-like chat and agentic applications such as knowledge retrieval and summarization; mobile AI-powered writing assistants; query and prompt rewriting; pretrained models can be adapted to other natural language generation tasks",
+      "primaryIntendedUsers": "",
+      "primaryIntendedDomain": "",
+      "secondaryIntendedUsers": "",
+      "secondaryIntendedDomain": "",
+      "secondaryIntendedUseCases": ""
+    },
+    "factors": {
+      "hardware": "Meta's custom-built GPU cluster with H100-80GB GPUs (700W TDP); 830k GPU hours of training",
+      "software": "Custom training libraries"
+    },
+    "evaluation": {
+      "metrics": "MMLU, AGIEval, ARC-Challenge, SQuAD, QuAC, DROP, Needle in Haystack, IFEval, GSM8K, MATH, GPQA, Hellaswag, BFCL V2, Nexus, InfiniteBench, MGSM and multilingual MMLU",
+      "datasets": "Standard automatic benchmarks run with Meta's internal evaluations library; dedicated adversarial evaluation datasets for safety",
+      "performance": "Instruction-tuned 3B: MMLU 63.4, IFEval 77.4, GSM8K 77.7, MATH 47.3, ARC-C 78.6; instruction-tuned 1B: MMLU 49.3, IFEval 59.5, GSM8K 44.4",
+      "factors": ""
+    },
+    "trainingData": {
+      "algorithm": "Auto-regressive optimized transformer; supervised fine-tuning and reinforcement learning with human feedback",
+      "dataset": "Up to 9 trillion tokens of publicly available online data with a cutoff of December 2023, plus logits from Llama 3.1 8B and 70B",
+      "procedure": "Pretraining with logits from Llama 3.1 8B and 70B as token-level targets, pruning and knowledge distillation, then several rounds of supervised fine-tuning, rejection sampling and direct preference optimization"
+    },
+    "ethicalConsiderations": {
+      "typeOfBias": "The model may in some instances produce inaccurate, biased or other objectionable responses",
+      "riskFactors": "Testing has not covered all scenarios and outputs cannot be predicted in advance; critical risk areas are chemical, biological, radiological, nuclear and explosive weapons, child safety and cyber attacks; small models in constrained environments have a different safety and helpfulness tradeoff",
+      "riskMitigation": "Recurring red teaming exercises whose findings improve benchmarks and safety tuning datasets; an output reporting mechanism and a bug bounty program",
+      "safetyMeasures": "Safety fine-tuning with human-generated and synthetic data, LLM-based classifiers to select prompts and responses, refusal and tone tuning, and safeguards provided to the community (Llama Guard, Prompt Guard and Code Shield)",
+      "safetyAndSecurityPolicy": "Developed following the Responsible Use Guide; use is subject to the Acceptable Use Policy",
+      "prohibitedDomains": "",
+      "misuseCases": "Use in any manner that violates applicable laws or regulations (including trade compliance laws); use prohibited by the Acceptable Use Policy and the Llama 3.2 Community License; use in languages beyond those explicitly supported",
+      "limitations": "Static model trained on an offline dataset; only English, German, French, Italian, Portuguese, Hindi, Spanish and Thai are officially supported; testing has not covered all scenarios",
+      "biasMitigation": "",
+      "privacyConcerns": "",
+      "privacyPolicy": "",
+      "securityMeasures": "",
+      "riskSeverity": "",
+      "unintendedUsers": "",
+      "regulatoryAdherence": "",
+      "regulatoryCompliance": ""
+    },
+    "caveatsAndRecommendations": "Developers should perform safety testing and tuning tailored to their application before deployment; deploy the model as part of an overall AI system with additional safeguards; use lighter system safeguards such as Llama Guard 3-1B in constrained environments; evaluate applications in context with a dedicated evaluation dataset; comply with the Llama 3.2 Community License and the Acceptable Use Policy when fine-tuning for other languages"
+  },
+  "referenceOdrl": {
+    "@context": [
+      "http://www.w3.org/ns/odrl.jsonld",
+      {
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ex": "http://example.org/modelcard/terms#"
+      }
+    ],
+    "@type": "odrl:Policy",
+    "uid": "http://example.org/policy/kaggle-llama-3.2",
+    "profile": "http://example.org/odrl/profile/modelcard",
+    "target": {
+      "@id": "http://example.org/asset/kaggle-llama-3.2",
+      "@type": "odrl:Asset",
+      "dc:title": "Llama 3.2",
+      "dc:creator": {
+        "@id": "http://example.org/party/meta"
+      },
+      "dcterms:hasVersion": "Llama 3.2 1B and 3B, pretrained and instruction-tuned (text only)",
+      "dc:type": "Multilingual large language model (text in, text out)",
+      "dcterms:license": "Llama 3.2 Community License",
+      "ex:hardware": "Meta's custom-built GPU cluster with H100-80GB GPUs (700W TDP); 830k GPU hours of training",
+      "ex:software": "Custom training libraries",
+      "ex:evaluationMetrics": "MMLU, AGIEval, ARC-Challenge, SQuAD, QuAC, DROP, Needle in Haystack, IFEval, GSM8K, MATH, GPQA, Hellaswag, BFCL V2, Nexus, InfiniteBench, MGSM and multilingual MMLU",
+      "ex:evaluationPerformance": "Instruction-tuned 3B: MMLU 63.4, IFEval 77.4, GSM8K 77.7, MATH 47.3, ARC-C 78.6; instruction-tuned 1B: MMLU 49.3, IFEval 59.5, GSM8K 44.4",
+      "ex:evaluationDatasets": "Standard automatic benchmarks run with Meta's internal evaluations library; dedicated adversarial evaluation datasets for safety",
+      "ex:trainingAlgorithm": "Auto-regressive optimized transformer; supervised fine-tuning and reinforcement learning with human feedback",
+      "ex:trainingDataset": "Up to 9 trillion tokens of publicly available online data with a cutoff of December 2023, plus logits from Llama 3.1 8B and 70B",
+      "ex:trainingProcedure": "Pretraining with logits from Llama 3.1 8B and 70B as token-level targets, pruning and knowledge distillation, then several rounds of supervised fine-tuning, rejection sampling and direct preference optimization",
+      "ex:limitations": "Static model trained on an offline dataset; only English, German, French, Italian, Portuguese, Hindi, Spanish and Thai are officially supported; testing has not covered all scenarios",
+      "ex:typeOfBias": "The model may in some instances produce inaccurate, biased or other objectionable responses",
+      "ex:riskFactors": "Testing has not covered all scenarios and outputs cannot be predicted in advance; critical risk areas are chemical, biological, radiological, nuclear and explosive weapons, child safety and cyber attacks; small models in constrained environments have a different safety and helpfulness tradeoff"
+    },
+    "party": [
+      {
+        "@id": "http://example.org/party/meta",
+        "foaf:name": "Meta",
+        "odrl:role": "odrl:assigner"
+      }
+    ],
+    "permission": [
+      {
+        "@type": "odrl:Permission",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Commercial and research use in multiple languages"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Assistant-like chat and agentic applications such as knowledge retrieval and summarization"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Mobile AI-powered writing assistants"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Query and prompt rewriting"
+              },
+              {
+                "leftOperand": "ex:intendedUseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Pretrained models can be adapted to other natural language generation tasks"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "prohibition": [
+      {
+        "@type": "odrl:Prohibition",
+        "action": "odrl:use",
+        "constraint": [
+          {
+            "odrl:or": [
+              {
+                "leftOperand": "ex:misuseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Use in any manner that violates applicable laws or regulations (including trade compliance laws)"
+              },
+              {
+                "leftOperand": "ex:misuseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Use prohibited by the Acceptable Use Policy and the Llama 3.2 Community License"
+              },
+              {
+                "leftOperand": "ex:misuseCase",
+                "operator": "odrl:eq",
+                "rightOperand": "Use in languages beyond those explicitly supported"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "duty": [
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:riskMitigation",
+                "operator": "odrl:eq",
+                "rightOperand": "Recurring red teaming exercises whose findings improve benchmarks and safety tuning datasets"
+              },
+              {
+                "leftOperand": "ex:riskMitigation",
+                "operator": "odrl:eq",
+                "rightOperand": "An output reporting mechanism and a bug bounty program"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:safetyMeasures",
+                "operator": "odrl:eq",
+                "rightOperand": "Safety fine-tuning with human-generated and synthetic data"
+              },
+              {
+                "leftOperand": "ex:safetyMeasures",
+                "operator": "odrl:eq",
+                "rightOperand": "LLM-based classifiers to select prompts and responses"
+              },
+              {
+                "leftOperand": "ex:safetyMeasures",
+                "operator": "odrl:eq",
+                "rightOperand": "Refusal and tone tuning"
+              },
+              {
+                "leftOperand": "ex:safetyMeasures",
+                "operator": "odrl:eq",
+                "rightOperand": "Safeguards provided to the community (Llama Guard, Prompt Guard and Code Shield)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:safetyAndSecurityPolicy",
+                "operator": "odrl:eq",
+                "rightOperand": "Developed following the Responsible Use Guide"
+              },
+              {
+                "leftOperand": "ex:safetyAndSecurityPolicy",
+                "operator": "odrl:eq",
+                "rightOperand": "Use is subject to the Acceptable Use Policy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@type": "odrl:Duty",
+        "action": "odrl:inform",
+        "constraint": [
+          {
+            "odrl:and": [
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Developers should perform safety testing and tuning tailored to their application before deployment"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Deploy the model as part of an overall AI system with additional safeguards"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Use lighter system safeguards such as Llama Guard 3-1B in constrained environments"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Evaluate applications in context with a dedicated evaluation dataset"
+              },
+              {
+                "leftOperand": "ex:caveatsAndRecommendations",
+                "operator": "odrl:eq",
+                "rightOperand": "Comply with the Llama 3.2 Community License and the Acceptable Use Policy when fine-tuning for other languages"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
