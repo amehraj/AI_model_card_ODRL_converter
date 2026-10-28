@@ -145,7 +145,7 @@ The evaluation answers how well a language model converts a model card into a po
 | `phi4-14b` | phi4-14b, 14 billion parameters | hosted endpoint |
 | `rule-based` | fixed mapping of the fields, no language model | `evaluation/src/baselines/ruleBasedExtractor.ts` |
 
-All language models received the same prompt (same hash) and the same settings: JSON output, temperature 0, no random seed. Each card was converted three times per model (30 runs per model; Qwen3.8-27B has 29 runs because Audio2Emotion has two). The rule-based converter ran once per card. The runs took place between 16 and 21 October 2026, and each run records the model identifier, the temperature, a hash of the prompt, the date and the duration. The models differ in size, quantization and serving environment, so differences between them cannot be attributed to the number of parameters alone.
+All language models received the same prompt (same hash) and the same settings: JSON output, temperature 0, no random seed. Each card was converted three times per model (30 runs per model). The rule-based converter ran once per card. The runs took place between 16 and 21 October 2026, and each run records the model identifier, the temperature, a hash of the prompt, the date and the duration. The models differ in size, quantization and serving environment, so differences between them cannot be attributed to the number of parameters alone.
 
 ### Metrics
 
@@ -153,7 +153,7 @@ Seven metrics are reported separately: (1) syntactic validity (valid JSON with t
 
 ### Results
 
-| Metric | Qwen2.5-7B (30 runs) | Qwen3.8-27B (29 runs) | phi4-14b (30 runs) | Rule-based (10 runs) |
+| Metric | Qwen2.5-7B (30 runs) | Qwen3.8-27B (30 runs) | phi4-14b (30 runs) | Rule-based (10 runs) |
 |---|---|---|---|---|
 | Valid JSON | 100% | 100% | 100% | 100% |
 | All required keys | 90% | 100% | 90% | 100% |
@@ -165,8 +165,8 @@ Seven metrics are reported separately: (1) syntactic validity (valid JSON with t
 | Operator accuracy | 100% | 100% | 100% | 100% |
 | Descriptive properties, precision / recall | 0.42 / 0.67 | 0.87 / 1.00 | 0.76 / 0.88 | 1.00 / 1.00 |
 | Interval of the mean recall | 0.38 to 0.91 | 1.00 to 1.00 | 0.73 to 0.98 | 1.00 to 1.00 |
-| Agreement between the runs of a card | 1.00 | 0.98 | 1.00 | not applicable |
-| Standard deviation of the F1 within a card | 0.00 | 0.01 | 0.00 | not applicable |
+| Agreement between the runs of a card | 1.00 | 0.98 | 1.00 | 1.00 |
+| Standard deviation of the F1 within a card | 0.00 | 0.01 | 0.00 | 0.00 |
 | Mean duration of a run | 72 s | 435 s | 345 s | below 1 s |
 
 Per card (means over the runs of a card; F1 of the extraction and recall of the descriptive properties):
