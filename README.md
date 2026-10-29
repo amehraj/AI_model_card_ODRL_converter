@@ -121,7 +121,7 @@ The evaluation answers how well a language model converts a model card into a po
 
 ### Model cards and reference policies
 
-10 real model cards from four repositories, converted by hand into the structured input (`evaluation/src/corpus/*.json`; the texts of six of them are in `evaluation/src/corpus/raw/`). The reference policies were drafted by the first author and verified by two co-authors; they contain 95 constraint clauses (44 permission, 6 prohibition, 45 duty) and 61 descriptive properties, and each conforms to the SHACL shapes. The evaluation starts from structured input and does not include images or tables.
+10 real model cards from four repositories, converted by hand into the structured input (`evaluation/src/corpus/*.json`; the texts of all 10 of them are in `evaluation/src/corpus/raw/`). The reference policies were drafted by the first author and verified by two co-authors; they contain 95 constraint clauses (44 permission, 6 prohibition, 45 duty) and 61 descriptive properties, and each conforms to the SHACL shapes. The evaluation starts from structured input and does not include images or tables.
 
 | Model card | Repository | Type | Clauses (permission / prohibition / duty) | Descriptive properties |
 |---|---|---|---|---|
